@@ -1,5 +1,27 @@
-const throng = require('throng');
+"use strict";
 
-throng((id) => {
-    console.log(`Started worker ${id}`);
+var throng = require('throng');
+
+var express = require("express");
+var app = express();
+var router = express.Router();
+
+
+function start(id) {
+    var port = process.env.PORT || 9000;
+    var env = app.get("env");
+
+    app.get('/', function(req, res) {
+        res.send('\n\nhello world ' + id + '\n\n');
+    });
+
+    app.listen(port, function () {
+        console.log("Running in " + env +" on port " + port + " by ID " + id +".");
+    });
+}
+
+throng({
+
+    start: start
 });
+// start();

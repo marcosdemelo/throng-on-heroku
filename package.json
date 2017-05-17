@@ -2,6 +2,7 @@
   "name": "application-name",
   "version": "0.0.1",
   "dependencies": {
+    "express": "^4.15.2",
     "throng": "^4.0.0"
   },
   "scripts": {
