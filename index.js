@@ -6,10 +6,10 @@ var express = require("express");
 var app = express();
 var router = express.Router();
 
-
 function start(id) {
     var port = process.env.PORT || 9000;
     var env = app.get("env");
+
 
     app.get('/', function(req, res) {
         res.send('\n\nhello world ' + id + '\n\n');
@@ -20,8 +20,5 @@ function start(id) {
     });
 }
 
-throng({
-
-    start: start
-});
-// start();
+var WORKERS = process.env.WEB_CONCURRENCY || 1;
+throng(WORKERS, start);
